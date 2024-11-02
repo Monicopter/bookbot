@@ -3,15 +3,14 @@ def main():
     text = get_book_text(book_path)
     wordcount = get_wordcount(text)
     alphabet_count = get_alpha_count(text)
-    print(text)
-    print(f"This text contains {wordcount} words.")
-    print(alphabet_count)
-    
+    book_report(wordcount, alphabet_count)
 
+#Finds file through provided path and returns file to variable 'text' in main()
 def get_book_text(path):
     with open(path) as f:
         return f.read()
-    
+
+#sorts through the book and counts words using the blank spaces between strings  
 def get_wordcount(text):
     wordcount = len(text.split())
     return wordcount
@@ -29,11 +28,20 @@ def get_alpha_count(text):
         if lower_case.isalpha():
             char_count[lower_case] = char_count.get(lower_case, 0) + 1
 
-    # sorts the dictionary char_count so that the character appear in alphabetical 
-    # order in a new dictionary
-    sorted_dict = dict(sorted(char_count.items()))
+    return char_count
 
-    return sorted_dict
+def book_report(wordcount, alphabet_count):
 
+    # Converts the alphabet_count dictionary into a key/value tuple then sorts 
+    # through it by frequency count in descending order
+    alphabet_count_sorted = sorted(alphabet_count.items(), key = lambda item: item[1], reverse = True)
+
+    print("--- Begin report of books/frankenstein.txt ---\n")
+    print(f"{wordcount} words found in the document. \n")
+
+    #Loops through sorted tuple and prints each character stat on a new line
+    for char, count in alphabet_count_sorted:
+        print(f"The '{char}' character was found {count} times.")
+    print("--- End report ---")
 
 main()
