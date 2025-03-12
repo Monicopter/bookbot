@@ -38,11 +38,11 @@ def main():
     # through it by frequency count in descending order
     alphabet_count_sorted = sorted(alphabet_count.items(), key = lambda item: item[1], reverse = True)
 
-    print("============ BOOKBOT ============\n")
-    print(f"Analyzing book found at {book_path}...\n")
-    print("----------- Word Count ----------\n")
-    print(f"Found {wordcount} total words\n")
-    print("--------- Character Count -------\n")
+    print("============ BOOKBOT ============")
+    print(f"Analyzing book found at {book_path}...")
+    print("----------- Word Count ----------")
+    print(f"Found {wordcount} total words")
+    print("--------- Character Count -------")
 
     #Loops through sorted tuple and prints each character stat on a new line
     for char, count in alphabet_count_sorted:
